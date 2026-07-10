@@ -1,36 +1,63 @@
 # Cloud-Local LoRaWAN Greenhouse Dataset
 
-This repository contains the sensor-reading dataset used in the revised manuscript:
+This repository contains the cleaned merged sensor-reading dataset used in the revised manuscript:
 
 **A Local-First LoRaWAN Observability Layer for XR-Ready Greenhouse Digital Twin Supervision with Nexelec RISE Sensors**
 
-The dataset supports the evaluation of a local-first LoRaWAN observability platform for greenhouse climate supervision. It includes decoded environmental readings and communication metadata collected from Nexelec RISE sensors through a MultiTech Conduit LoRaWAN gateway.
+The dataset supports the evaluation of a local-first LoRaWAN observability platform for greenhouse climate supervision. It includes decoded environmental readings and LoRaWAN communication metadata collected from Nexelec RISE sensors through a MultiTech Conduit LoRaWAN gateway.
 
 ## Repository content
 
 | File | Description |
 |---|---|
-| `recovered-data-updated-5434-readings.xlsx` | Main recovered dataset containing 5,434 decoded sensor-reading records. |
-| `README.md` | Dataset description, usage notes, and citation information. |
+| `recovered_data.xlsx` | Cleaned merged sensor-reading dataset containing 6,222 records from five Nexelec RISE devices. |
+| `README.md` | Dataset description, usage notes, data-quality notes, and citation information. |
 
 ## Dataset overview
 
-The dataset contains **5,434 decoded readings** from a greenhouse LoRaWAN monitoring prototype. It is intended to support reproducible analysis of local-first IoT observability, packet traceability, and environmental monitoring.
+The dataset contains **6,222 decoded sensor-reading records** from a greenhouse LoRaWAN monitoring prototype. It is intended to support reproducible analysis of local-first IoT observability, environmental monitoring, packet traceability, and XR-ready greenhouse digital-twin data trust.
 
 Main characteristics:
 
-- **Total records:** 5,434 decoded sensor readings
-- **Sensor type:** Nexelec RISE environmental sensors
-- **Gateway:** MultiTech Conduit LoRaWAN gateway
-- **Measured variables:** CO₂, temperature, relative humidity, and derived VPD when available
-- **Communication metadata:** device identity, gateway context, RSSI, SNR, frequency, f-port, timestamps, and sequence/count information when available
-- **Purpose:** evaluation of data ingestion, local storage, dashboard supervision, packet traceability, and local-first observability
+- **Total sensor-reading records:** 6,222
+- **Unique reading identifiers:** 5,788
+- **Reading ID range:** 1 to 5,788
+- **Missing ID gaps:** 0
+- **Duplicated identifiers:** 434 duplicated IDs; IDs 1–434 appear twice after merging
+- **Number of devices:** 5 DevEUIs
+- **Records per device:** 1,219 to 1,290 records per device
+- **Date span:** 2026-05-19 18:55:41 to 2026-07-07 23:54:46 UTC
+- **Gateway ID:** 00800000D00099D6
+- **LoRaWAN f-port:** 56
+- **Measured variables:** CO₂, temperature, relative humidity, and derived VPD
+- **Communication metadata:** device identity, gateway context, RSSI, SNR, frequency, timestamps, f-port, and sequence/count information when available
+- **Purpose:** evaluation of data ingestion, local storage, dashboard supervision, communication traceability, and local-first observability
+
+## Data-quality note
+
+This cleaned merged dataset contains only the **sensor-reading** data used for the revised quantitative analysis.
+
+The dataset contains **434 duplicated reading identifiers** because IDs 1–434 appear twice after merging. These duplicated identifiers are kept and reported as a data-quality boundary rather than hidden. They should be considered during reproducible analysis, especially when computing counts based on unique identifiers.
+
+The dataset has **no missing reading-ID gaps** in the ID range 1–5,788.
+
+## Descriptive statistics
+
+| Variable | n | Minimum | Median | Mean | Maximum |
+|---|---:|---:|---:|---:|---:|
+| CO₂ stored value (ppm) | 6,222 | 0.0 | 483.5 | 492.8 | 943.0 |
+| Temperature (°C) | 6,222 | 18.0 | 24.4 | 24.6 | 41.0 |
+| Relative humidity (%) | 6,222 | 17.5 | 57.3 | 56.4 | 74.2 |
+| VPD (kPa) | 6,222 | 0.55 | 1.30 | 1.46 | 6.41 |
+| RSSI (dBm) | 6,222 | -118.0 | -67.0 | -66.2 | -14.0 |
+| SNR (dB) | 6,222 | -13.0 | 7.0 | 6.8 | 14.0 |
+| Frequency (MHz) | 6,222 | 867.1 | 867.9 | 867.8 | 868.5 |
 
 ## Research context
 
-The dataset was used to strengthen the quantitative evaluation of a LoRaWAN greenhouse supervision architecture. The revised work compares cloud-first, hybrid, and local-first monitoring approaches, with a focus on preserving both environmental readings and communication evidence.
+The dataset was used to strengthen the quantitative evaluation of a LoRaWAN greenhouse supervision architecture. The revised work compares cloud-first, hybrid, and local-first monitoring approaches, with a focus on preserving environmental readings and communication evidence for traceable greenhouse supervision.
 
-The dataset is not presented as proof of crop-yield improvement, water savings, disease-risk reduction, autonomous control, or industrial-grade reliability. It is used as prototype evidence for IoT observability and XR-ready greenhouse digital-twin data trust.
+The dataset is not presented as proof of crop-yield improvement, water savings, disease-risk reduction, autonomous control, or industrial-grade reliability. It is used as prototype evidence for IoT observability, local data trust, and XR-ready greenhouse digital-twin backend preparation.
 
 ## Typical fields
 
@@ -55,7 +82,7 @@ Depending on the exported sheet structure, the dataset may include fields such a
 This dataset can be used for:
 
 - Greenhouse environmental data analysis
-- LoRaWAN packet-delivery and sequence-gap analysis
+- LoRaWAN sequence-gap and data-quality analysis
 - Radio-metadata analysis using RSSI, SNR, and frequency
 - Local-first IoT observability studies
 - Preparation of XR-ready or digital-twin greenhouse supervision backends
@@ -66,12 +93,12 @@ This dataset can be used for:
 The dataset is publicly available in this GitHub repository:
 
 ```text
-https://github.com/quaboam/Cloud-Local-LoRaWAN-Greenhouse-Dataset
+https://github.com/OUATILANAS/Dataset-Sensor1
 ```
 
 Suggested statement for the manuscript:
 
-> The dataset used in this study is available through the project GitHub repository: https://github.com/quaboam/Cloud-Local-LoRaWAN-Greenhouse-Dataset.
+> The cleaned merged sensor-reading dataset used in this study is available through the project GitHub repository: https://github.com/OUATILANAS/Dataset-Sensor1.
 
 ## Funding acknowledgement
 
@@ -103,4 +130,3 @@ Add your preferred license here before publication. Recommended options include:
 - `CC BY 4.0` for open academic reuse with attribution
 - `CC BY-NC 4.0` if you want to restrict commercial use
 - `MIT License` only if the repository also contains reusable code
-
